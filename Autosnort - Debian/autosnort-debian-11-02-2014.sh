@@ -675,6 +675,7 @@ print_status "Downloading, making and compiling barnyard2.."
 cd /usr/src
 
 echo '192.30.252.128 github.com' > /etc/hosts
+echo '192.30.252.163 codeload.github.com' >> /etc/hosts
 wget https://github.com/firnsy/barnyard2/archive/master.tar.gz -O barnyard2.tar.gz &>> $logfile
 error_check 'Download of Barnyard2'
 
