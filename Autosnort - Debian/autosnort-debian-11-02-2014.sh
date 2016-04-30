@@ -91,25 +91,25 @@ cp /usr/src/$snortver/etc/gen-msg.map $snort_basedir/etc
 
 #Restores /etc/crontab_bkup if it exists. This is to prevent dupe crontab entries.
 
-if [ -f /etc/crontab_bkup ]; then
-	print_notification "Found /etc/crontab_bkup. Restoring original crontab to prevent duplicate cron entries.."
-	cp /etc/crontab_bkup /etc/crontab
-	chmod 644 /etc/crontab
-	error_check 'crontab restore'
-fi
+#if [ -f /etc/crontab_bkup ]; then
+#	print_notification "Found /etc/crontab_bkup. Restoring original crontab to prevent duplicate cron entries.."
+#	cp /etc/crontab_bkup /etc/crontab
+#	chmod 644 /etc/crontab
+#	error_check 'crontab restore'
+#fi
 
-print_status "Backup up crontab to /etc/crontab_bkup.."
+#print_status "Backup up crontab to /etc/crontab_bkup.."
 
-cp /etc/crontab /etc/crontab_bkup
-chmod 600 /etc/crontab_bkup
-error_check 'crontab backup'
+#cp /etc/crontab /etc/crontab_bkup
+#chmod 600 /etc/crontab_bkup
+#error_check 'crontab backup'
 
-print_status "Adding entry to /etc/crontab to run pulledpork Sunday at midnight (once weekly).."
+#print_status "Adding entry to /etc/crontab to run pulledpork Sunday at midnight (once weekly).."
 
-echo "#This line has been added by Autosnort to run pulledpork for the latest rule updates." >> /etc/crontab
-echo "  0  0  *  *  7  root /usr/src/pulledpork-*/pulledpork.pl -c /usr/src/pulledpork-*/etc/pulledpork.conf" >> /etc/crontab
+#echo "#This line has been added by Autosnort to run pulledpork for the latest rule updates." >> /etc/crontab
+#echo "  0  0  *  *  7  root /usr/src/pulledpork-*/pulledpork.pl -c /usr/src/pulledpork-*/etc/pulledpork.conf" >> /etc/crontab
 
-print_notification "crontab has been modified. If you want to modify when pulled pork runs to check rule updates, modify /etc/crontab."
+#print_notification "crontab has been modified. If you want to modify when pulled pork runs to check rule updates, modify /etc/crontab."
 
 }
 
