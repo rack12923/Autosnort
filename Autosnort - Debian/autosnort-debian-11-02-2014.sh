@@ -609,7 +609,7 @@ cp pulledpork.conf pulledpork.conf.orig
 
 echo "rule_url=https://www.snort.org/reg-rules/|snortrules-snapshot.tar.gz|6a7aa9f946223f674f4df281e1b683ef74963c9c" > pulledpork.tmp
 echo "rule_url=https://www.snort.org/reg-rules/|opensource.gz|6a7aa9f946223f674f4df281e1b683ef74963c9c" >> pulledpork.tmp
-echo "rule_url=https://s3.amazonaws.com/snort-org/www/rules/community/|community-rules.tar.gz|Community" >> pulledpork.tmp
+echo "rule_url=https://www.snort.org/rules/community|community-rules.tar.gz|Community" >> pulledpork.tmp
 echo "rule_url=http://labs.snort.org/feeds/ip-filter.blf|IPBLACKLIST|open" >> pulledpork.tmp
 echo "ignore=deleted.rules,experimental.rules,local.rules" >> pulledpork.tmp
 echo "temp_path=/tmp" >> pulledpork.tmp
