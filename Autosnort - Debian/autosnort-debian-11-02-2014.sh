@@ -729,7 +729,7 @@ echo "config hostname: `hostname`" >> /root/barnyard2.conf.tmp
 
 # The if/then check here is to make sure the user chose to install a web interface. If they chose no, they chose not to install mysql server, so we can skip all this.
 
-if [ $ui_inst = 1 ]; then
+if [ 1 = 1 ]; then
 	print_status "Integrating mysql with barnyard2.."
 	echo "output database: log,mysql, user=snort password=$snort_mysql_pass dbname=snort host=localhost" >> /root/barnyard2.conf.tmp
 	
@@ -747,7 +747,7 @@ if [ $ui_inst = 1 ]; then
 	mysql -u root -p$root_mysql_pass -e "grant create, insert, select, delete, update on snort.* to snort@localhost identified by '$snort_mysql_pass';" &>> $logfile
 	error_check 'Snort database user creation'
 	
-elif [ $ui_inst = 2 ]; then
+elif [ 1 = 2 ]; then
 	case $r_dbase in
 		1)
 		echo "output database: log,mysql, user=$rdb_user password=$rdb_pass_1 dbname=$rdb_name host=$rdb_host" >> /root/barnyard2.conf.tmp
