@@ -239,7 +239,7 @@ install_packages ${packages[@]}
 
 #This is where the user decides whether or not they want a full stand-alone sensor or a barebones/distributed installation sensor. If they opt to install apache and mysql, we generate a self-signed ssl cert and private key. We then back up the default ssl and sites-available/default site, then make some customizations.
 
-case $ui_inst in
+case 1 in
 	1)
 	print_status "Acquiring and installing mysql-server and apache2.."
 	declare -a packages=( mysql-server apache2 );
@@ -549,7 +549,7 @@ wget https://labs.snort.org/snort/$choice1conf/snort.conf -O $snort_basedir/etc/
 
 if [ $? != 0 ];then
 	print_error "Attempt to download $choice1 snort.conf from labs.snort.org failed. attempting to download snort.conf for $choice2.."
-	wget https://labs.snort.org/snort/$choice2conf/snort.conf -O $snort_basedir/etc/snort.conf --no-check-certificate &>> $logfile
+	wget https://www.snort.org/documents/snort-2982-conf -O $snort_basedir/etc/snort.conf --no-check-certificate &>> $logfile
 	error_check 'Download of secondary snort.conf'
 else
 	print_good "Successfully downloaded snort.conf for $choice1."
@@ -638,19 +638,19 @@ if [ $? == 0 ]; then
 	pp_postprocessing
 else
 	print_error "Rule download for $choice1 snort rules has failed. Waiting 15 minutes, then trying text-only rule download for $choice2.."
-	sleep 910
+	sleep 5
 	perl pulledpork.pl -S $choice2 -c /usr/src/pulledpork-*/etc/pulledpork.conf -T -vv &>> $logfile
 	if [ $? == 0 ]; then
 		pp_postprocessing
 	else
 		print_error "Rule download for $choice2 snort rules has failed. Waiting 15 minutes, then trying text-only rule download $choice3.."
-		sleep 910
+		sleep 5
 		perl pulledpork.pl -S $choice3 -c /usr/src/pulledpork-*/etc/pulledpork.conf -T -vv &>> $logfile
 		if [ $? == 0 ]; then
 			pp_postprocessing
 		else
 			print_error "Rule download for $choice3 has failed. Waiting 15 minutes, then trying text-only rule download for $choice4 (Final shot!)"
-			sleep 910
+			sleep 5
 			perl pulledpork.pl -S $choice4 -c /usr/src/pulledpork-*/etc/pulledpork.conf -T -vv &>> $logfile
 			if [ $? == 0 ]; then
 				pp_postprocessing
